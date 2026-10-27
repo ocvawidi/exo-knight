@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/exo-knight/schemas/character.schema.json",
+  "title": "Exo Knight Character Record",
+  "description": "A source-aware character record. Replace the placeholder ID when publishing a stable schema.",
+  "type": "object",
+  "required": ["name", "canon_status"],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "canon_status": { "enum": ["CANON", "PROVISIONAL", "PROPOSED", "UNKNOWN"] },
+    "sources": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "role_affiliation": { "type": ["string", "null"] },
+    "appearance": { "type": ["string", "null"] },
+    "personality": { "type": ["string", "null"] },
+    "goals": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "abilities": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "limitations": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "relationships": { "type": "array", "items": { "type": "object", "required": ["character"], "properties": { "character": { "type": "string" }, "description": { "type": ["string", "null"] }, "status": { "enum": ["CANON", "PROVISIONAL", "PROPOSED", "UNKNOWN"] } }, "additionalProperties": false }, "default": [] },
+    "known_facts": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "unknowns": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "current_state": { "type": ["object", "null"], "properties": { "location": { "type": ["string", "null"] }, "condition": { "type": ["string", "null"] }, "equipment": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false },
+    "notes": { "type": "array", "items": { "type": "string" }, "default": [] }
+  },
+  "additionalProperties": false
+}

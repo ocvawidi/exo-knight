@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/exo-knight/schemas/session_state.schema.json",
+  "title": "Exo Knight Session State",
+  "description": "Checkpoint for an active roleplay session; session facts do not automatically become permanent canon.",
+  "type": "object",
+  "required": ["session_status", "confirmed_events", "open_threads", "unresolved_questions"],
+  "properties": {
+    "session_id": { "type": ["string", "null"] },
+    "title": { "type": ["string", "null"] },
+    "session_status": { "enum": ["ACTIVE", "PAUSED", "CHECKPOINTED", "CLOSED"] },
+    "current_scene": { "type": ["string", "null"] },
+    "in_world_time": { "type": ["string", "null"] },
+    "confirmed_events": { "type": "array", "items": { "type": "object", "required": ["summary"], "properties": { "summary": { "type": "string" }, "source": { "type": ["string", "null"] }, "canon_status": { "enum": ["CANON", "PROVISIONAL", "PROPOSED", "UNKNOWN"] } }, "additionalProperties": false } },
+    "active_characters": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "character_knowledge": { "type": "array", "items": { "type": "object", "required": ["character", "known_facts"], "properties": { "character": { "type": "string" }, "known_facts": { "type": "array", "items": { "type": "string" } }, "unknown_facts": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false }, "default": [] },
+    "open_threads": { "type": "array", "items": { "type": "string" } },
+    "unresolved_questions": { "type": "array", "items": { "type": "string" } },
+    "continuity_warnings": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "proposed_lore": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "resume_from": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}
